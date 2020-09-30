@@ -11,7 +11,7 @@ router.post('/',
   challengeController.createChallenge,
   (req, res) => res.status(200).json(res.locals.challenges));
 
-router.patch('/:name',
+router.put('/:name',
   challengeController.updateChallenge,
   (req, res) => res.status(200).json(res.locals.challenges));
 

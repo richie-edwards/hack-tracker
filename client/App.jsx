@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-/* Import other components like so:
-import Component2 from './directoryName/ComponenetName'
-*/
+import MainContainer from './containers/MainContainer.jsx';
 
 // Create an class/stateful component
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>
-        <h1>My App Heading!</h1>
+        <MainContainer />
       </div>
-    );
+    )
   }
+
 }
 
 // ???
