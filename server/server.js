@@ -1,19 +1,19 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const challengeRouter = require('./routes/challengeRouter.js');
 
 const app = express();
-/* ROUTERS */
 
 const PORT = 3000;
 
-/**
- * handle parsing request body
- */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // ????
 
+/* ROUTERS */
 app.use('/challenge', challengeRouter);
 
-// ????? statically serve files if on production mode ????
+// backend server to serve up these file in production mode
 if (process.env.NODE_ENV === 'production') {
   console.log(`NODE_ENV ENVIRONMENT VARIABLE: ${process.env.NODE_ENV}`);
   // statically serve everything in the build folder on the route '/build'

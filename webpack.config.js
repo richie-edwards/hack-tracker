@@ -45,5 +45,6 @@ module.exports = {
   },
   devServer: {
     publicPath: '/build',
+    proxy: { '/challenge': 'http://localhost:3000' },
   },
 };
