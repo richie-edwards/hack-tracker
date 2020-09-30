@@ -44,6 +44,6 @@ module.exports = {
     ],
   },
   devServer: {
-    publicPath: 'http://localhost:8080/build/',
+    publicPath: '/build',
   },
 };
