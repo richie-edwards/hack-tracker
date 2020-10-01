@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import ChallengeComponent from '../components/ChallengeComponent.jsx';
 import Table from 'react-bootstrap/Table';
 
-class UpNextListContainer extends Component {
+
+class ChallengeListDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,14 +13,15 @@ class UpNextListContainer extends Component {
 
   componentDidMount() {
     // fetch the challenges by calling route
-    fetch('/challenge/?limit=1')
+    fetch('/challenge/')
       .then(res => res.json())
       .then((challenges) => {
+        console.log(challenges);
         return this.setState({
           challenges,
         });
       })
-      .catch((error) => console.log(`Error in UpNextListContainer.componentDidMount: ${error}`));
+      .catch((error) => console.log(`Error in ChallengeContainer.componentDidMount: ${error}`));
   }
 
   render() {
@@ -28,7 +30,7 @@ class UpNextListContainer extends Component {
     // place message if no challenges and return null
     if (!challenges) return null;
     if (challenges.length === 0) return (
-      <div>No challenges to review at this time.</div>
+      <div>No challenges yet Please add one.</div>
     );
 
     // create array of challenges components
@@ -37,14 +39,20 @@ class UpNextListContainer extends Component {
         <ChallengeComponent
           key={index}
           info={challenge}
+          addCardOnClick={this.props.addCardOnClick}
+          deleteCardOnClick={this.props.deleteCardOnClick}
         />
       );
     });
 
     return (
-      <div id="upNextContainer">
-        <h3>Pending Coding Challenges (top 5)</h3>
+      <div>
+        <div className="tableHeadingWithButton">
+          <h3>All Coding Challenges</h3>
+          <button>+</button>
+        </div>
         <Table striped bordered hover responsive>
+          {/* TODO: DRY! Same thead in UpNextListContainer */}
           <thead>
             <tr>
               <th>Name</th>
@@ -52,9 +60,9 @@ class UpNextListContainer extends Component {
               <th>Source</th>
               <th>Completed?</th>
               <th>Reminder Date</th>
-              {/* <th>Problem Statement</th> */}
-              {/* <th>Solution</th> */}
-              {/* <th>Time Complexity</th> */}
+              {/* <th>Problem Statement</th>
+              <th>Solution</th>
+              <th>Time Complexity</th> */}
             </tr>
           </thead>
           <tbody>
@@ -62,8 +70,8 @@ class UpNextListContainer extends Component {
           </tbody>
         </Table>
       </div>
-    );
+    )
   }
 }
 
-export default UpNextListContainer;
+export default ChallengeListDisplay;

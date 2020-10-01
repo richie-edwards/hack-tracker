@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TotalsDisplay from '../components/TotalsDisplay.jsx';
-import ChallengeListContainer from './ChallengeListContainer.jsx';
+import ChallengeContainer from './ChallengeContainer.jsx';
 import UpNextListContainer from './UpNextListContainer.jsx';
 
 
@@ -27,8 +27,7 @@ class MainContainer extends Component {
           totalChallenges={this.props.totalChallenges} // ?????
           pendingChallenges={this.props.totalPendingChallenges}
         />
-        <UpNextListContainer />
-        <ChallengeListContainer />
+        <ChallengeContainer />
       </div>
     );
   }
