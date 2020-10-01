@@ -1,3 +1,10 @@
 body {
   background:$dodgerBlue;
+  // color: $dimGrey;
+}
+
+.challengeListItem {
+  list-style: none;
+  border: 1px solid $dimGrey;
+  margin: 5px;
 }

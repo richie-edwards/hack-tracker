@@ -7,6 +7,10 @@ router.get('/',
   challengeController.getChallenges,
   (req, res) => res.status(200).json(res.locals.challenges));
 
+// router.get('/',
+//   challengeController.getChallenges,
+//   (req, res) => res.status(200).json(res.locals.challenges));
+
 router.post('/',
   challengeController.createChallenge,
   (req, res) => res.status(200).json(res.locals.challenges));

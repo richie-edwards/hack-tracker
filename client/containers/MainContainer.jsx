@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TotalsDisplay from '../components/TotalsDisplay.jsx';
 import ChallengeListContainer from './ChallengeListContainer.jsx';
+import UpNextListContainer from './UpNextListContainer.jsx';
 
+
+const mapStateToProps = state => ({
+  totalChallenges: state.challenges.totalChallenges,
+  totalPendingChallenges: state.challenges.totalPendingChallenges,
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
 
 class MainContainer extends Component {
   constructor(props) {
@@ -14,14 +25,13 @@ class MainContainer extends Component {
         <h1>My App Heading!</h1>
         <TotalsDisplay
           totalChallenges={this.props.totalChallenges} // ?????
-          pendingChallenges={this.props.pendingChallenges}
+          pendingChallenges={this.props.totalPendingChallenges}
         />
-        {/*<UpNextDisplay />
-         */}
+        <UpNextListContainer />
         <ChallengeListContainer />
       </div>
     );
   }
 }
 
-export default MainContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
