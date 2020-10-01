@@ -85,7 +85,7 @@ const challengesReducer = (state = initialState, action) => {
         ...state,
       };
 
-    case types.SET_NEW_MARKET_INFO:
+    case actionTypes.SET_NEW_CHALLENGE_INFO:
       const {
         name,
         category,
@@ -94,6 +94,7 @@ const challengesReducer = (state = initialState, action) => {
         solution,
         timeComplexity,
         source,
+        reminderDateTime,
       } = action.payload;
       return {
         ...state,
@@ -104,51 +105,7 @@ const challengesReducer = (state = initialState, action) => {
         newSolution: solution,
         newTimeComplexity: timeComplexity,
         newSource: source,
-      };
-
-    case types.ADD_CARD:
-      marketList = state.marketList.slice();
-      totalCards += 1;
-      // let theMarket = marketList.find(({marketID}) => marketID === action.payload);
-      for (let i = 0; i < marketList.length; i += 1) {
-        if (marketList[i].marketID === action.payload) {
-          marketList[i].cards += 1;
-        }
-        marketList[i].pctOfTotal = Math.round((marketList[i].cards / totalCards) * 10000) / 100;
-      }
-      return {
-        ...state,
-        marketList,
-        totalCards,
-      };
-
-    case types.DELETE_CARD:
-      // if cards is 0, return state
-      if (totalCards < 1) {
-        alert('No Cards to Delete');
-        return state;
-      }
-
-      marketList = state.marketList.slice();
-      totalCards -= 1;
-      for (let i = 0; i < marketList.length; i += 1) {
-        if (marketList[i].marketID === action.payload) {
-          // return msg and original state if not enough cards
-          if (marketList[i].cards === 0) {
-            alert('No Cards to Delete');
-            return state;
-          }
-          // cards reduce by 1 for market
-          marketList[i].cards -= 1;
-        }
-
-        // eslint-disable-next-line max-len
-        marketList[i].pctOfTotal = totalCards === 0 ? 0 : Math.round((marketList[i].cards / totalCards) * 10000) / 100;
-      }
-      return {
-        ...state,
-        marketList,
-        totalCards,
+        newReminderDateTime: reminderDateTime,
       };
 
     default:
